@@ -9,7 +9,7 @@ Dirichlet boundaries.
 | Part | Content | State |
 | --- | --- | --- |
 | 0 | Cluster (Ubuntu, Tailscale, SSH, Open MPI) | in progress |
-| 1 | Serial solver + convergence study | done (tests pass) |
+| 1 | Serial solver + convergence study | serial done; convergence table and plot pending |
 | 2 | MPI 1D strips | todo |
 | 3 | MPI 2D blocks | todo |
 | 4 | Performance study | todo |
@@ -77,8 +77,8 @@ for N = 16..256 at T = 0.05, r = 0.2).
 
 ## Team
 
-- Person 1: serial solver, MPI strips, numerical tests, plots.
-- Person 2: cluster, MPI blocks, benchmarks, performance model.
+- Jean Majdalani: serial solver, MPI strips, numerical tests, plots.
+- Ali Hassoun: cluster, MPI blocks, benchmarks, performance model.
 
 ## AI use
 
