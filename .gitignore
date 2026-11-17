@@ -1,0 +1,9 @@
+build/
+*.bin
+__pycache__/
+
+# Local backups and downloaded archives
+backup/
+CMakeLists.backup.txt
+heat_serial_starter.zip
+*:Zone.Identifier
