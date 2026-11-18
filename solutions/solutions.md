@@ -312,3 +312,27 @@ below the average of its neighbours (f curves upward) and negative
 when it is above. This is the one-dimensional version of the meaning
 of the Laplacian in Section 1.4: a point heats up when its
 surroundings are on average warmer than it.
+## Task 1.1 - Mean-value formula
+1.1 – Formule de la moyenne (1.2). Avec a = r cos φ et b = r sin φ, le développement de Taylor à deux variables donne u + a·uₓ + b·u_y + ½(a²uₓₓ + 2ab·uₓ_y + b²u_yy) + O(r³). On intègre terme à terme sur [0, 2π] :
+
+Le terme constant donne 2π·u.
+Les termes d’ordre 1 s’annulent, car ∫cos φ = ∫sin φ = 0.
+Au second ordre, le terme croisé s’annule (∫cos φ sin φ = 0) et ∫cos² = ∫sin² = π. Il reste (r²/2)·π·(uₓₓ + u_yy) = (πr²/2)∇²u.
+On divise par 2π et on obtient u + (r²/4)∇²u.
+Les termes d’ordre 3 s’annulent aussi (symétrie φ → φ+π). Le reste est donc O(r⁴), pas O(r³).
+## Task 1.2 - Dimensional analysis
+1.2 – Analyse dimensionnelle.
+
+(a) [αt/L²] = (m²/s · s)/m² = 1, donc le nombre est sans dimension.
+(b) τ = α^p·L^q doit être en secondes. Cela impose p = −1 et q = 2, donc τ = L²/α, et c’est la seule combinaison possible. Tout temps caractéristique ne dépend que de α et de L. Il est donc proportionnel à τ, car le rapport t*/τ est un nombre sans dimension qui ne dépend de rien d’autre.
+Cuivre, L = 0,1 m : τ = 0,01/1,1·10⁻⁴ ≈ 91 s.
+Acier au carbone : τ = 0,01/1,3·10⁻⁵ ≈ 769 s ≈ 13 min.
+Cela correspond à l’intuition : le cuivre égalise sa température environ 8,5 fois plus vite. τ n’est qu’un ordre de grandeur.
+(c) Avec x̂ = x/L, ŷ = y/L et t̂ = αt/L², la règle de la chaîne donne ∂ₜ = (α/L²)∂ₜ̂ et ∂ₓₓ = (1/L²)∂ₓ̂ₓ̂. L’équation devient (α/L²)u_t̂ = (α/L²)(u_x̂x̂ + u_ŷŷ), soit u_t̂ = u_x̂x̂ + u_ŷŷ. Ni α ni L n’apparaissent. Un solveur écrit pour α = 1 sur [0,1]² couvre donc toutes les plaques et tous les matériaux. Il suffit de convertir le temps avec t̂ = αt/L².
+## Task 1.3 - Fourier modes
+1.3 – Modes de Fourier. On pose u = sin(mπx/Lₓ)·sin(nπy/L_y)·e^{−λt}, avec λ = απ²(m²/Lₓ² + n²/L_y²).
+
+On a u_t = −λu.
+On a uₓₓ = −(mπ/Lₓ)²u et u_yy = −(nπ/L_y)²u. Donc α(uₓₓ + u_yy) = −λu = u_t, et l’équation (1.1) est satisfaite.
+Sur les bords, sin 0 = sin mπ = 0 en x et sin 0 = sin nπ = 0 en y, car m et n sont entiers. La solution est nulle sur les quatre bords.
+À t = 0, la condition initiale est sin(mπx/Lₓ)·sin(nπy/L_y). C’est le cas V du projet avec Lₓ = L_y = 1 et m = n = 1.
