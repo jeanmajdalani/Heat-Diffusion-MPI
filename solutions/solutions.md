@@ -240,3 +240,75 @@ N x N grid, P processes.
     bandwidth term and 1/N² for the latency term). Over a slow
     network (large t_s), parallelism pays off only for large grids,
     when t_c N²/P is much larger than t_s.
+    
+
+## Task 3.1 - The Backward Difference
+
+Define D-f(x) = [f(x) - f(x-h)] / h.
+
+By Taylor's theorem with remainder,
+
+    f(x-h) = f(x) - h f'(x) + (h²/2) f''(ξ),   ξ between x-h and x.
+
+Therefore f(x) - f(x-h) = h f'(x) - (h²/2) f''(ξ), and
+
+    D-f(x) = f'(x) - (h/2) f''(ξ).
+
+Truncation error:
+
+    τ(h) = D-f(x) - f'(x) = -(h/2) f''(ξ) = -(h/2) f''(x) + O(h²).
+
+Since f'' is bounded near x, τ(h) = O(h): the backward difference is
+first-order accurate. Its leading error has the opposite sign of the
+forward difference error (+(h/2) f''), but the same size.
+
+Numerical check for f(x) = sin x at x = 1, f'(1) = cos 1:
+
+| h | |D-f - f'| | ratio | leading term (h/2)|f''(1)| |
+|---|---|---|---|
+| 0.1 | 4.114e-2 | - | 4.207e-2 |
+| 0.05 | 2.081e-2 | 1.98 | 2.104e-2 |
+| 0.025 | 1.046e-2 | 1.99 | 1.052e-2 |
+| 0.0125 | 5.245e-3 | 1.99 | 5.259e-3 |
+
+The ratios tend to 2 (observed order log2(ratio) ≈ 1), and the error
+matches the leading term (h/2)|f''(1)| = (h/2) sin 1.
+
+
+## Task 3.3 - Sanity Checks on the Formula
+
+D2 f(x) = [f(x-h) - 2f(x) + f(x+h)] / h²   (from Task 3.2).
+
+(a) Exact values:
+
+- f(x) = 1:   (1 - 2 + 1) / h² = 0.
+- f(x) = x:   [(x-h) - 2x + (x+h)] / h² = 0.
+- f(x) = x²:  [(x-h)² - 2x² + (x+h)²] / h²
+              = [x² - 2xh + h² - 2x² + x² + 2xh + h²] / h²
+              = 2h² / h² = 2.
+
+These are exactly f'' for these three functions (0, 0 and 2).
+A reasonable approximation of f'' must pass these tests: they are the
+simplest functions whose second derivative is known, and the
+truncation error of D2 contains only f'''' and higher derivatives,
+which vanish for polynomials of degree at most 3. If a formula failed
+on them, its error would not tend to 0 as h -> 0 even for trivial
+functions, so it would not be consistent. Also, f'' must not change
+when a constant or a linear function is added to f.
+
+(b) The coefficients of f(x-h), f(x), f(x+h) are 1/h², -2/h², 1/h².
+Their sum is 1 - 2 + 1 = 0. This is the test f = 1 seen in the
+coefficients: a constant function has f'' = 0, so the weights must
+add up to zero. The formula only measures differences between values,
+never their level.
+
+(c) Rewrite
+
+    D2 f(x) = (2/h²) * { [f(x-h) + f(x+h)]/2 - f(x) }.
+
+So D2 f(x) is (2/h²) times the amount by which the average of the two
+neighbours exceeds the value at the point. It is positive when f(x) is
+below the average of its neighbours (f curves upward) and negative
+when it is above. This is the one-dimensional version of the meaning
+of the Laplacian in Section 1.4: a point heats up when its
+surroundings are on average warmer than it.
