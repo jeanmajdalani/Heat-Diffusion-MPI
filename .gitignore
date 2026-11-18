@@ -7,3 +7,6 @@ backup/
 CMakeLists.backup.txt
 heat_serial_starter.zip
 *:Zone.Identifier
+cluster/mpi_hello
+cluster/pingpong
+cluster/hosts
