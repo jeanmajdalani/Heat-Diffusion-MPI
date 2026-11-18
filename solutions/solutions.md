@@ -336,3 +336,57 @@ On a u_t = −λu.
 On a uₓₓ = −(mπ/Lₓ)²u et u_yy = −(nπ/L_y)²u. Donc α(uₓₓ + u_yy) = −λu = u_t, et l’équation (1.1) est satisfaite.
 Sur les bords, sin 0 = sin mπ = 0 en x et sin 0 = sin nπ = 0 en y, car m et n sont entiers. La solution est nulle sur les quatre bords.
 À t = 0, la condition initiale est sin(mπx/Lₓ)·sin(nπy/L_y). C’est le cas V du projet avec Lₓ = L_y = 1 et m = n = 1.
+## Task 2.1 - Taylor expansions
+
+(a) f(x+h) = f + h f' + (h^2/2) f'' + (h^3/6) f''' + (h^4/24) f'''' + O(h^5)
+
+(b) f(x-h) = f - h f' + (h^2/2) f'' - (h^3/6) f''' + (h^4/24) f'''' + O(h^5)
+
+Les termes d'ordre impair (h, h^3) changent de signe, car on remplace h par -h
+et (-h)^k = -h^k si k est impair, +h^k si k est pair.
+
+(c) f(x+2h) = f + 2h f' + 2h^2 f'' + (4/3) h^3 f''' + (2/3) h^4 f'''' + O(h^5)
+
+(coefficients : (2h)^k / k! = 2, 8/6 = 4/3, 16/24 = 2/3)
+
+## Task 5.1 - Warm-up in one dimension
+
+(a) Au noeud interieur x_i, avec la formule de la Task 3.2 (erreur O(dx^2)) :
+
+    du_i/dt = alpha (u_{i+1} - 2 u_i + u_{i-1}) / dx^2
+
+(b) Euler explicite : (u_i^{n+1} - u_i^n) / dt = alpha (u_{i+1}^n - 2 u_i^n + u_{i-1}^n) / dx^2, donc
+
+    u_i^{n+1} = u_i^n + r (u_{i+1}^n - 2 u_i^n + u_{i-1}^n),   r = alpha dt / dx^2
+              = (1 - 2r) u_i^n + r (u_{i+1}^n + u_{i-1}^n)
+
+(c) La seule combinaison sans dimension est r = alpha dt / dx^2. C'est la
+combinaison alpha t / L^2 de la Task 1.2, avec t remplace par dt et L par dx.
+Elle compare le temps d'un pas au temps de diffusion sur une maille.
+
+## Task 5.4 - Insulated edges in 2D
+
+(a) Bord gauche x = 0 isole, les trois autres Dirichlet.
+- Inconnues : les noeuds du bord (0, j) pour j = 1..N-1 (ils ne sont plus fixes).
+  Ils sont mis a jour comme des noeuds interieurs.
+- Noeuds fantomes : une colonne i = -1, aux lignes j = 1..N-1.
+- Remplissage : u_x(0, y, t) = 0 donne (u_{1,j} - u_{-1,j}) / (2 dx) = 0,
+  donc u_{-1,j} = u_{1,j} (miroir). Cette valeur est rafraichie a chaque pas,
+  avant la mise a jour. Le noeud (0, j) devient :
+  u_{0,j}^{n+1} = u_{0,j} + r (2 u_{1,j} + u_{0,j+1} + u_{0,j-1} - 4 u_{0,j}).
+
+(b) Coin entre un bord isole et un bord Dirichlet : le coin appartient a la
+condition Dirichlet, sa valeur est imposee, donc ce n'est pas une inconnue et
+aucun fantome n'est necessaire (le choix de la valeur du coin doit etre fixe
+dans la specification).
+Coin entre deux bords isoles (par exemple x = 0 et y = 0) : le coin (0,0) est
+une inconnue avec deux fantomes, u_{-1,0} = u_{1,0} et u_{0,-1} = u_{0,1} :
+  u_{0,0}^{n+1} = u_{0,0} + r (2 u_{1,0} + 2 u_{0,1} - 4 u_{0,0}).
+(Le stencil a 5 points n'utilise pas de noeud diagonal.)
+
+(c) Flux non nul u_x(0, t) = h(t) :
+  (u_1 - u_{-1}) / (2 dx) = h(t)  =>  u_{-1} = u_1 - 2 dx h(t).
+Le noeud x_0 est alors mis a jour (Euler explicite, h evalue en t_n) :
+  u_0^{n+1} = u_0 + r (u_1 - 2 u_0 + u_{-1})
+            = u_0 + r (2 u_1 - 2 u_0 - 2 dx h(t_n)).
+Si h = 0, on retrouve le miroir de l'exemple 5.2.
