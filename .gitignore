@@ -10,3 +10,4 @@ heat_serial_starter.zip
 cluster/mpi_hello
 cluster/pingpong
 cluster/hosts
+results/bench_*
