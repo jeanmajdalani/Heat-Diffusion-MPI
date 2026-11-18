@@ -1,5 +1,7 @@
 #include "heat_common.hpp"
-
+#ifdef HEAT_HAVE_MPI
+#include "heat_strips.hpp"
+#endif
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -31,6 +33,20 @@ int main(int argc, char** argv) {
         const Options opt = parse_options(argc, argv);
         const int side = opt.N + 1;
         const auto timing = heat_common::make_time_setup(opt);
+        
+        if (opt.decomp != "serial") {
+#ifdef HEAT_HAVE_MPI
+            if (opt.decomp == "blocks") {
+                throw std::invalid_argument("--decomp blocks is not implemented yet");
+            }
+            MPI_Init(&argc, &argv);
+            const int rc = heat_strips::run(opt, timing);
+            MPI_Finalize();
+            return rc;
+#else
+            throw std::invalid_argument("this build has no MPI support: install Open MPI and rebuild");
+#endif
+        }
         const long long steps = timing.steps;
         const double dt = timing.dt;
         const double effective_r = timing.effective_r;

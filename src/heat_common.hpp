@@ -19,23 +19,30 @@ inline std::size_t idx(int i, int j, int side) {
          + static_cast<std::size_t>(i);
 }
 
+// Initial value of node (i,j) for a given case. Shared by Serial and MPI versions
+// so that all decompositions start from exactly the same field.
+inline double initial_value(int i, int j, int N, const std::string& test_case) {
+    if (test_case == "1") {
+        return (i == 0 || i == N || j == 0 || j == N) ? 1.0 : 0.0;
+    }
+    if (test_case == "2") {
+        // Top/bottom edges take precedence at the four corners.
+        return (j == 0 || j == N) ? 1.0 : 0.0;
+    }
+    if (i > 0 && i < N && j > 0 && j < N) {
+        const double pi = std::acos(-1.0);
+        const double x = static_cast<double>(i) / N;
+        const double y = static_cast<double>(j) / N;
+        return std::sin(pi * x) * std::sin(pi * y);
+    }
+    return 0.0;
+}
+
 inline void initialize(std::vector<double>& grid, int N, const std::string& test_case) {
     const int side = N + 1;
-    const double pi = std::acos(-1.0);
     for (int j = 0; j <= N; ++j) {
         for (int i = 0; i <= N; ++i) {
-            double value = 0.0;
-            if (test_case == "1") {
-                if (i == 0 || i == N || j == 0 || j == N) value = 1.0;
-            } else if (test_case == "2") {
-                // Top/bottom edges take precedence at the four corners.
-                if (j == 0 || j == N) value = 1.0;
-            } else if (i > 0 && i < N && j > 0 && j < N) {
-                const double x = static_cast<double>(i) / N;
-                const double y = static_cast<double>(j) / N;
-                value = std::sin(pi * x) * std::sin(pi * y);
-            }
-            grid[idx(i, j, side)] = value;
+            grid[idx(i, j, side)] = initial_value(i, j, N, test_case);
         }
     }
 }
@@ -158,8 +165,8 @@ inline Options parse_options(int argc, char** argv) {
     if (opt.has_steps && opt.steps <= 0) {
         throw std::invalid_argument("--steps must be positive");
     }
-    if (opt.decomp != "serial") {
-        throw std::invalid_argument("this starter implements --decomp serial only; MPI comes next");
+    if (opt.decomp != "serial" && opt.decomp != "strips" && opt.decomp != "blocks") {
+        throw std::invalid_argument("--decomp must be serial, strips or blocks");
     }
     return opt;
 }
