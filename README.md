@@ -8,11 +8,11 @@ Dirichlet boundaries.
 
 | Part | Content | State |
 | --- | --- | --- |
-| 0 | Cluster (Ubuntu, Tailscale, SSH, Open MPI) | in progress |
-| 1 | Serial solver + convergence study | serial done; convergence table and plot pending |
-| 2 | MPI 1D strips | todo |
-| 3 | MPI 2D blocks | todo |
-| 4 | Performance study | todo |
+| 0 | Cluster (Ubuntu 24.04, Tailscale, SSH, Open MPI 4.1.6) | in progress (Person 3) |
+| 1 | Serial solver + convergence study | done (observed order about 2.0, `results/convergence.csv`) |
+| 2 | MPI 1D strips | done (bit-for-bit identical to serial, `tests/compare_all.sh strips`) |
+| 3 | MPI 2D blocks | in progress (Person 2) |
+| 4 | Performance study | in progress (Person 3), runner: `scripts/benchmark.sh` |
 
 ## Build
 
@@ -35,6 +35,17 @@ on x86-64 and ARM).
 ./build/heat --case V --N 32 --r 0.2 --T 0.05 --out V32.bin
 python3 tests/test_serial.py
 ```
+## Run with MPI (strips)
+
+```bash
+mpirun -np 4 ./build/heat --case 1 --N 256 --r 0.24 --steps 500 --decomp strips
+tests/compare_all.sh strips
+scripts/benchmark.sh -N "512 1024" -P "1 2 4 8" -R 3 -M "node slot"
+```
+
+Strips need P <= N-1. For MPI runs, `t_total`, `t_comp` and `t_comm` are the
+maximum over ranks. On the cluster, use `-H cluster/hosts -I tailscale0`
+(see `cluster/hosts.example`).
 
 ## Command-line options
 
@@ -45,7 +56,7 @@ python3 tests/test_serial.py
 | `--r` | r = alpha*dt/h^2. Values above 0.25 are refused (unstable) |
 | `--steps K` or `--T T` | exactly one of: fixed number of steps, or final time. With `--T`, dt is chosen so that T/dt is an integer and r is not exceeded |
 | `--out file.bin` | optional output file for the final field |
-| `--decomp serial` | decomposition (`strips` and `blocks` will be added) |
+| `--decomp serial\|strips\|blocks` | decomposition: `serial` (default), `strips` (MPI, 1D rows, run with `mpirun`), `blocks` (MPI, 2D, in progress) |
 
 ## Output
 
@@ -68,6 +79,12 @@ python3 tests/test_serial.py
 | `solutions/` | written solutions of the background-notes Tasks |
 | `llm_log/` | AI interaction log (required by the course) |
 | `AGENTS.md` | AI logging rules |
+| `src/heat_strips.hpp` | MPI strips decomposition |
+| `tests/compare_all.sh` | serial vs MPI comparison |
+| `scripts/benchmark.sh` | benchmark runner (repetitions, node/slot mapping) |
+| `scripts/heatmap.py`, `scripts/plot_unstable.py` | heat maps, instability figure |
+| `tools/unstable_demo.cpp` | Task 6.7 instability experiment (r above 1/4) |
+| `cluster/` | MPI hello world, ping-pong, hostfile template |
 
 ## Verification
 
@@ -77,8 +94,9 @@ for N = 16..256 at T = 0.05, r = 0.2).
 
 ## Team
 
-- Jean Majdalani: serial solver, MPI strips, numerical tests, plots.
-- Ali Hassoun: cluster, MPI blocks, benchmarks, performance model.
+- Jean Majdalani: serial solver, MPI strips, verification, benchmark runner, figures, integration.
+- Ali Hassoun : MPI blocks (Cartesian decomposition), block-level validation.
+- Yorgo : cluster (Tailscale, SSH, hostfile), inter-VM benchmarks, performance model.
 
 ## AI use
 
