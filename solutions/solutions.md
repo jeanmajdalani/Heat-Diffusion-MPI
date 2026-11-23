@@ -390,3 +390,16 @@ Le noeud x_0 est alors mis a jour (Euler explicite, h evalue en t_n) :
   u_0^{n+1} = u_0 + r (u_1 - 2 u_0 + u_{-1})
             = u_0 + r (2 u_1 - 2 u_0 - 2 dx h(t_n)).
 Si h = 0, on retrouve le miroir de l'exemple 5.2.
+
+## Task 6.7 - Breaking it on purpose
+
+Experiment: N = 64, case 1, r = 0.2625 (5% above the limit 1/4), 200 steps; control run with r = 0.24.
+Code: tools/unstable_demo.cpp. Figure: results/unstable/instability.png.
+
+Observation. With r = 0.24 the interior maximum stays at about 1. With r = 0.2625 it stays below 1 for about 110 steps, then grows: 1.5 at step 130, 11 at step 160, about 300 at step 200.
+
+Where it appears. Near the four corners (around i, j = 10 and 55), where the hot edges meet the cold interior: the initial data is discontinuous there, so it contains the most high-frequency content.
+
+Pattern. A checkerboard: the sign alternates from node to node (zoom and 1D cut in the figure).
+
+Link with Task 6.3. The worst Fourier mode has theta = phi = pi, i.e. (-1)^(i+j), with amplification factor G = 1 - 8r. For r = 0.2625, G = -1.1, so |G| > 1: every step multiplies this mode by about 1.1 and flips its sign, which is the growing checkerboard. For r <= 1/4, |G| <= 1 and the mode no longer grows. The measured growth (about 1.09 per step) is slightly below 1.1 because on a 64-point grid the fastest mode is not exactly theta = pi.
