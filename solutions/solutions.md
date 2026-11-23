@@ -72,6 +72,7 @@ This is the five-point stencil implemented in src/heat.cpp.
 
 ### (c) Space-time stencil
 
+```
 Level n:                          Level n+1:
 
             (i,j+1)
@@ -79,6 +80,7 @@ Level n:                          Level n+1:
   (i-1,j) -- (i,j) -- (i+1,j)  ----->   (i,j)
                |
             (i,j-1)
+```
 
 The value at (i,j) at time n+1 depends on the center and its four
 neighbors (left, right, up, down) at time n. No diagonal neighbor
@@ -121,14 +123,16 @@ Conclusion: an explicit five-point stencil with two separate arrays
 
 (e) Five-point stencil (weights multiplied by 1/h²):
 
+```
                  (i,j+1)  weight 1
                     |
     (i-1,j) -- (i,j) -- (i+1,j)
      weight 1   weight -4   weight 1
                     |
                  (i,j-1)  weight 1
+```
 
-    The weights add up to 0.
+The weights add up to 0.
 
 (f) Lap_h u(i,j) = (4/h²) * (average of the 4 neighbors - u(i,j)).
     The mean-value formula (1.2) says
@@ -313,83 +317,155 @@ when it is above. This is the one-dimensional version of the meaning
 of the Laplacian in Section 1.4: a point heats up when its
 surroundings are on average warmer than it.
 ## Task 1.1 - Mean-value formula
-1.1 – Formule de la moyenne (1.2). Avec a = r cos φ et b = r sin φ, le développement de Taylor à deux variables donne u + a·uₓ + b·u_y + ½(a²uₓₓ + 2ab·uₓ_y + b²u_yy) + O(r³). On intègre terme à terme sur [0, 2π] :
 
-Le terme constant donne 2π·u.
-Les termes d’ordre 1 s’annulent, car ∫cos φ = ∫sin φ = 0.
-Au second ordre, le terme croisé s’annule (∫cos φ sin φ = 0) et ∫cos² = ∫sin² = π. Il reste (r²/2)·π·(uₓₓ + u_yy) = (πr²/2)∇²u.
-On divise par 2π et on obtient u + (r²/4)∇²u.
-Les termes d’ordre 3 s’annulent aussi (symétrie φ → φ+π). Le reste est donc O(r⁴), pas O(r³).
+Let a = r cos(phi) and b = r sin(phi). The two-variable Taylor expansion about (x, y) is
+
+```
+u(x+a, y+b) = u + a u_x + b u_y + (1/2)(a^2 u_xx + 2ab u_xy + b^2 u_yy) + O(r^3)
+```
+
+Integrate term by term over phi from 0 to 2 pi, using: the integrals of cos(phi),
+sin(phi) and cos(phi) sin(phi) are 0, and the integrals of cos^2(phi) and sin^2(phi)
+are pi.
+
+- Constant term: 2 pi u.
+- First-order terms: r u_x (integral of cos) + r u_y (integral of sin) = 0.
+- Second-order terms: (r^2/2)(pi u_xx + 2 u_xy * 0 + pi u_yy) = (pi r^2 / 2) Lap u.
+
+Dividing by 2 pi gives the mean over the circle:
+
+```
+mean = u + (r^2 / 4) Lap u + (remainder)
+```
+
+The third-order terms also vanish (each changes sign under phi -> phi + pi), so
+the remainder is O(r^4), not O(r^3).
+
 ## Task 1.2 - Dimensional analysis
-1.2 – Analyse dimensionnelle.
 
-(a) [αt/L²] = (m²/s · s)/m² = 1, donc le nombre est sans dimension.
-(b) τ = α^p·L^q doit être en secondes. Cela impose p = −1 et q = 2, donc τ = L²/α, et c’est la seule combinaison possible. Tout temps caractéristique ne dépend que de α et de L. Il est donc proportionnel à τ, car le rapport t*/τ est un nombre sans dimension qui ne dépend de rien d’autre.
-Cuivre, L = 0,1 m : τ = 0,01/1,1·10⁻⁴ ≈ 91 s.
-Acier au carbone : τ = 0,01/1,3·10⁻⁵ ≈ 769 s ≈ 13 min.
-Cela correspond à l’intuition : le cuivre égalise sa température environ 8,5 fois plus vite. τ n’est qu’un ordre de grandeur.
-(c) Avec x̂ = x/L, ŷ = y/L et t̂ = αt/L², la règle de la chaîne donne ∂ₜ = (α/L²)∂ₜ̂ et ∂ₓₓ = (1/L²)∂ₓ̂ₓ̂. L’équation devient (α/L²)u_t̂ = (α/L²)(u_x̂x̂ + u_ŷŷ), soit u_t̂ = u_x̂x̂ + u_ŷŷ. Ni α ni L n’apparaissent. Un solveur écrit pour α = 1 sur [0,1]² couvre donc toutes les plaques et tous les matériaux. Il suffit de convertir le temps avec t̂ = αt/L².
+(a) [alpha t / L^2] = (m^2/s * s) / m^2 = 1, so the number is dimensionless.
+
+(b) Write tau = alpha^p L^q. Its unit is m^(2p+q) s^(-p). To get seconds we need
+p = -1 and then 2p + q = 0, so q = 2: tau = L^2 / alpha, and this is the only
+possible combination. Any characteristic time depends only on alpha and L, so its
+ratio to tau is a dimensionless number that can depend on nothing else, hence a
+constant: every characteristic time is proportional to tau.
+
+For a plate with L = 0.10 m (L^2 = 0.01 m^2):
+
+| Material | alpha (m^2/s) | tau = L^2 / alpha |
+|---|---|---|
+| Copper | 1.1e-4 | about 91 s (1.5 minutes) |
+| Carbon steel | 1.3e-5 | about 769 s (13 minutes) |
+
+This matches intuition: copper equalizes its temperature about 8.5 times faster.
+tau is an order of magnitude; the constant factor depends on the geometry.
+
+(c) Let x^ = x/L, y^ = y/L and t^ = alpha t / L^2. By the chain rule,
+d/dt = (alpha/L^2) d/dt^, d^2/dx^2 = (1/L^2) d^2/dx^^2 (same in y), so
+
+```
+(alpha/L^2) u_t^ = (alpha/L^2) (u_x^x^ + u_y^y^)   =>   u_t^ = u_x^x^ + u_y^y^
+```
+
+Neither alpha nor L appears. A solver written for alpha = 1 on the unit square
+therefore covers every plate and every material: only the time needs converting,
+t^ = alpha t / L^2.
+
 ## Task 1.3 - Fourier modes
-1.3 – Modes de Fourier. On pose u = sin(mπx/Lₓ)·sin(nπy/L_y)·e^{−λt}, avec λ = απ²(m²/Lₓ² + n²/L_y²).
 
-On a u_t = −λu.
-On a uₓₓ = −(mπ/Lₓ)²u et u_yy = −(nπ/L_y)²u. Donc α(uₓₓ + u_yy) = −λu = u_t, et l’équation (1.1) est satisfaite.
-Sur les bords, sin 0 = sin mπ = 0 en x et sin 0 = sin nπ = 0 en y, car m et n sont entiers. La solution est nulle sur les quatre bords.
-À t = 0, la condition initiale est sin(mπx/Lₓ)·sin(nπy/L_y). C’est le cas V du projet avec Lₓ = L_y = 1 et m = n = 1.
+Let u = sin(m pi x / Lx) sin(n pi y / Ly) exp(-lambda t), with
+lambda = alpha pi^2 (m^2/Lx^2 + n^2/Ly^2).
+
+- Time derivative: u_t = -lambda u.
+- Space derivatives: u_xx = -(m pi / Lx)^2 u and u_yy = -(n pi / Ly)^2 u.
+- Therefore alpha (u_xx + u_yy) = -alpha pi^2 (m^2/Lx^2 + n^2/Ly^2) u = -lambda u = u_t,
+  so u satisfies the heat equation (1.1).
+
+Boundary: at x = 0 and x = Lx we get sin(0) = sin(m pi) = 0, and at y = 0 and
+y = Ly we get sin(0) = sin(n pi) = 0 (m and n are integers). So u = 0 on all four
+edges.
+
+Initial condition: at t = 0 the exponential is 1, so
+u(x, y, 0) = sin(m pi x / Lx) sin(n pi y / Ly). This is Case V of the project
+(Lx = Ly = 1, m = n = 1).
+
 ## Task 2.1 - Taylor expansions
 
 (a) f(x+h) = f + h f' + (h^2/2) f'' + (h^3/6) f''' + (h^4/24) f'''' + O(h^5)
 
 (b) f(x-h) = f - h f' + (h^2/2) f'' - (h^3/6) f''' + (h^4/24) f'''' + O(h^5)
 
-Les termes d'ordre impair (h, h^3) changent de signe, car on remplace h par -h
-et (-h)^k = -h^k si k est impair, +h^k si k est pair.
+The odd-order terms (h, h^3) change sign, because replacing h by -h gives
+(-h)^k = -h^k for odd k and +h^k for even k.
 
 (c) f(x+2h) = f + 2h f' + 2h^2 f'' + (4/3) h^3 f''' + (2/3) h^4 f'''' + O(h^5)
 
-(coefficients : (2h)^k / k! = 2, 8/6 = 4/3, 16/24 = 2/3)
+(the coefficients are (2h)^k / k! = 2, 8/6 = 4/3, 16/24 = 2/3)
 
 ## Task 5.1 - Warm-up in one dimension
 
-(a) Au noeud interieur x_i, avec la formule de la Task 3.2 (erreur O(dx^2)) :
+(a) At an interior node x_i, using the formula of Task 3.2 (error O(dx^2)):
 
-    du_i/dt = alpha (u_{i+1} - 2 u_i + u_{i-1}) / dx^2
+```
+du_i/dt = alpha (u_{i+1} - 2 u_i + u_{i-1}) / dx^2
+```
 
-(b) Euler explicite : (u_i^{n+1} - u_i^n) / dt = alpha (u_{i+1}^n - 2 u_i^n + u_{i-1}^n) / dx^2, donc
+(b) Forward Euler: (u_i^{n+1} - u_i^n) / dt = alpha (u_{i+1}^n - 2 u_i^n + u_{i-1}^n) / dx^2, so
 
-    u_i^{n+1} = u_i^n + r (u_{i+1}^n - 2 u_i^n + u_{i-1}^n),   r = alpha dt / dx^2
-              = (1 - 2r) u_i^n + r (u_{i+1}^n + u_{i-1}^n)
+```
+u_i^{n+1} = u_i^n + r (u_{i+1}^n - 2 u_i^n + u_{i-1}^n),   r = alpha dt / dx^2
+          = (1 - 2r) u_i^n + r (u_{i+1}^n + u_{i-1}^n)
+```
 
-(c) La seule combinaison sans dimension est r = alpha dt / dx^2. C'est la
-combinaison alpha t / L^2 de la Task 1.2, avec t remplace par dt et L par dx.
-Elle compare le temps d'un pas au temps de diffusion sur une maille.
+(c) The only dimensionless combination is r = alpha dt / dx^2. It is the quantity
+alpha t / L^2 of Task 1.2 with t replaced by dt and L by dx: it compares the time
+of one step with the diffusion time across one cell.
 
 ## Task 5.4 - Insulated edges in 2D
 
-(a) Bord gauche x = 0 isole, les trois autres Dirichlet.
-- Inconnues : les noeuds du bord (0, j) pour j = 1..N-1 (ils ne sont plus fixes).
-  Ils sont mis a jour comme des noeuds interieurs.
-- Noeuds fantomes : une colonne i = -1, aux lignes j = 1..N-1.
-- Remplissage : u_x(0, y, t) = 0 donne (u_{1,j} - u_{-1,j}) / (2 dx) = 0,
-  donc u_{-1,j} = u_{1,j} (miroir). Cette valeur est rafraichie a chaque pas,
-  avant la mise a jour. Le noeud (0, j) devient :
-  u_{0,j}^{n+1} = u_{0,j} + r (2 u_{1,j} + u_{0,j+1} + u_{0,j-1} - 4 u_{0,j}).
+(a) Left edge x = 0 insulated, the other three edges Dirichlet.
 
-(b) Coin entre un bord isole et un bord Dirichlet : le coin appartient a la
-condition Dirichlet, sa valeur est imposee, donc ce n'est pas une inconnue et
-aucun fantome n'est necessaire (le choix de la valeur du coin doit etre fixe
-dans la specification).
-Coin entre deux bords isoles (par exemple x = 0 et y = 0) : le coin (0,0) est
-une inconnue avec deux fantomes, u_{-1,0} = u_{1,0} et u_{0,-1} = u_{0,1} :
-  u_{0,0}^{n+1} = u_{0,0} + r (2 u_{1,0} + 2 u_{0,1} - 4 u_{0,0}).
-(Le stencil a 5 points n'utilise pas de noeud diagonal.)
+- Unknowns: the nodes (0, j) for j = 1..N-1 are no longer fixed. They are updated
+  like interior nodes.
+- Ghost nodes: one column i = -1, at rows j = 1..N-1.
+- Filling rule: u_x(0, y, t) = 0 gives (u_{1,j} - u_{-1,j}) / (2 dx) = 0, so
+  u_{-1,j} = u_{1,j} (mirror). The ghost values are refreshed at every step, before
+  the update. The node (0, j) becomes:
 
-(c) Flux non nul u_x(0, t) = h(t) :
-  (u_1 - u_{-1}) / (2 dx) = h(t)  =>  u_{-1} = u_1 - 2 dx h(t).
-Le noeud x_0 est alors mis a jour (Euler explicite, h evalue en t_n) :
-  u_0^{n+1} = u_0 + r (u_1 - 2 u_0 + u_{-1})
-            = u_0 + r (2 u_1 - 2 u_0 - 2 dx h(t_n)).
-Si h = 0, on retrouve le miroir de l'exemple 5.2.
+```
+u_{0,j}^{n+1} = u_{0,j} + r (2 u_{1,j} + u_{0,j+1} + u_{0,j-1} - 4 u_{0,j})
+```
+
+(b) Corners.
+
+- Corner between an insulated edge and a Dirichlet edge: the corner belongs to the
+  Dirichlet condition, so its value is imposed. It is not an unknown and needs no
+  ghost node (the value given to the corner must be fixed in the specification).
+- Corner between two insulated edges (for example x = 0 and y = 0): the corner
+  (0, 0) is an unknown with two ghost nodes, u_{-1,0} = u_{1,0} and
+  u_{0,-1} = u_{0,1}:
+
+```
+u_{0,0}^{n+1} = u_{0,0} + r (2 u_{1,0} + 2 u_{0,1} - 4 u_{0,0})
+```
+
+  (the 5-point stencil uses no diagonal node.)
+
+(c) Nonzero flux u_x(0, t) = h(t):
+
+```
+(u_1 - u_{-1}) / (2 dx) = h(t)   =>   u_{-1} = u_1 - 2 dx h(t)
+```
+
+The node x_0 is then updated (forward Euler, h evaluated at t_n):
+
+```
+u_0^{n+1} = u_0 + r (u_1 - 2 u_0 + u_{-1})
+          = u_0 + r (2 u_1 - 2 u_0 - 2 dx h(t_n))
+```
+
+If h = 0 we recover the mirror rule of Example 5.2.
 
 ## Task 6.7 - Breaking it on purpose
 
