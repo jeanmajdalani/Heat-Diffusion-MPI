@@ -479,3 +479,384 @@ Where it appears. Near the four corners (around i, j = 10 and 55), where the hot
 Pattern. A checkerboard: the sign alternates from node to node (zoom and 1D cut in the figure).
 
 Link with Task 6.3. The worst Fourier mode has theta = phi = pi, i.e. (-1)^(i+j), with amplification factor G = 1 - 8r. For r = 0.2625, G = -1.1, so |G| > 1: every step multiplies this mode by about 1.1 and flips its sign, which is the growing checkerboard. For r <= 1/4, |G| <= 1 and the mode no longer grows. The measured growth (about 1.09 per step) is slightly below 1.1 because on a 64-point grid the fastest mode is not exactly theta = pi.
+
+
+## Task 3.5 - Where does round-off take over?
+
+### Numerical experiment
+
+Using the centered second derivative from Task 3.2:
+
+D2 f(x) = [f(x+h) - 2f(x) + f(x-h)] / h²
+
+For f(x) = sin(x) at x = 1, the exact value is -sin(1).
+
+| h | Absolute error |
+|---|---|
+| 1e-1 | 7.009921e-4 |
+| 1e-2 | 7.012235e-6 |
+| 1e-3 | 7.008259e-8 |
+| 1e-4 | 3.025119e-9 |
+| 1e-5 | 7.579768e-7 |
+| 1e-6 | 7.806786e-5 |
+| 1e-7 | 8.803716e-3 |
+| 1e-8 | 2.687520e-1 |
+| 1e-9 | 1.118638e+2 |
+| 1e-10 | 8.414710e-1 |
+
+The smallest observed error occurs at h = 1e-4.
+
+### Explanation
+
+The truncation error is O(h²), while the round-off
+error behaves approximately as O(epsilon/h²).
+
+The total error can therefore be modeled as:
+
+E(h) = C1*h² + C2*epsilon/h²
+
+Balancing the two terms gives:
+
+h² ~ epsilon/h²
+h^4 ~ epsilon
+h ~ epsilon^(1/4)
+
+For double precision, epsilon is approximately 1e-16.
+Therefore, the expected optimal scale is h ~ 1e-4,
+which agrees with the numerical experiment.
+
+For smaller h, cancellation and floating-point rounding
+errors are amplified by division by h². The errors
+need not increase monotonically because rounding
+depends on the individual floating-point operations.
+
+Experiment: scripts/task_3_5.py
+Results: results/p2/task_3_5.csv
+
+![Round-off error experiment](../results/p2/task_3_5.png)
+
+
+## Task 4.1 - Experiments with forward Euler
+
+### (a) Forward Euler implementation
+
+Consider the initial value problem:
+
+u' = -lambda*u, u(0) = 1, lambda = 50.
+
+The exact solution is:
+
+u(t) = exp(-50*t)
+
+Forward Euler gives:
+
+u_new = u_old - lambda*dt*u_old
+      = (1 - lambda*dt)*u_old
+
+The amplification factor is g = 1 - lambda*dt.
+
+### (b) Stability experiment
+
+Stability requires:
+
+|1 - lambda*dt| <= 1
+
+Therefore:
+
+0 < dt <= 2/lambda = 0.04
+
+Experimental results:
+
+| dt | Maximum absolute value | Bounded |
+|---|---|---|
+| 0.01 | 1.000000 | Yes |
+| 0.02 | 1.000000 | Yes |
+| 0.03846154 | 1.000000 | Yes |
+| 0.04 | 1.000000 | Yes |
+| 0.04166667 | 6.827953 | No |
+| 0.05 | 3325.257 | No |
+| 0.10 | 1048576 | No |
+| 0.50 | 576 | No |
+| 1.00 | 49 | No |
+
+The largest stable time step observed is dt = 0.04,
+in agreement with the theoretical stability limit.
+
+At dt = 0.04, g = -1: the solution remains bounded
+but oscillates without decay. This is marginal stability.
+
+### (c) First-order convergence
+
+The absolute error is measured at t = 1 against exp(-50).
+
+| dt | Absolute error | Observed order |
+|---|---|---|
+| 1e-4 | 2.27345818e-23 | - |
+| 5e-5 | 1.17046129e-23 | 0.957811 |
+| 2.5e-5 | 5.93901219e-24 | 0.978782 |
+| 1.25e-5 | 2.99148628e-24 | 0.989361 |
+| 6.25e-6 | 1.50127660e-24 | 0.994673 |
+
+The observed order is calculated using:
+
+p = log(E(dt)/E(dt/2))/log(2)
+
+As dt decreases, the observed order approaches 1.
+This confirms first-order global convergence.
+
+### (d) Backward Euler implementation
+
+Backward Euler gives:
+
+u_new = u_old - lambda*dt*u_new
+
+Rearranging:
+
+u_new = u_old/(1 + lambda*dt)
+
+The amplification factor is:
+
+g = 1/(1 + lambda*dt)
+
+For every dt > 0, we have 0 < g < 1.
+
+All tested time steps, including dt = 1, remained
+bounded. The maximum absolute value was 1 in every
+experiment, including the initial value.
+
+Backward Euler is therefore unconditionally stable
+for this problem. Stability does not guarantee
+accuracy for large time steps.
+
+Experiment: scripts/task_4_1.py
+Results: results/p2/task_4_1_stability.csv
+Results: results/p2/task_4_1_convergence.csv
+
+
+## Task 5.3 - Interpreting the update
+
+### Weighted form of the update
+
+From Task 5.2(b), the explicit scheme on a uniform
+grid is:
+
+u_new(i,j) = (1 - 4r)*u_old(i,j)
+           + r*(u_old(i-1,j) + u_old(i+1,j)
+               + u_old(i,j-1) + u_old(i,j+1))
+
+The central weight is w0 = 1 - 4r.
+
+Each of the four neighboring nodes has weight r.
+
+### (a) Sum of the weights
+
+The sum of all five weights is:
+
+w0 + 4r = (1 - 4r) + 4r = 1
+
+Suppose the temperature is uniform and equal to C,
+including compatible boundary values.
+
+Then:
+
+u_new(i,j) = (1 - 4r)*C + 4r*C
+           = C
+
+Therefore, a uniform temperature remains unchanged
+at every time step.
+
+A constant temperature field is an equilibrium
+solution because its spatial Laplacian is zero.
+
+### (b) Physical interpretation
+
+Define the average temperature of the four neighbors:
+
+A = (u_left + u_right + u_top + u_bottom)/4
+
+The update can be rewritten as:
+
+u_new = u_old + 4r*(A - u_old)
+
+The discrete Laplacian measures the difference between
+the central temperature and the average temperature
+of its four neighbors.
+
+If the central node is hotter than its neighbors on
+average, its temperature decreases.
+
+If the central node is colder than its neighbors on
+average, its temperature increases.
+
+If the central temperature equals the neighboring
+average, its temperature remains unchanged.
+
+For 0 <= r <= 1/4, all five weights are non-negative
+and their sum is one. The update is therefore a
+convex combination of the old temperatures.
+
+This describes the smoothing effect of heat diffusion
+and explains why local temperature differences tend
+to decrease over time.
+
+
+## Task 6.1 - Verify the upwind computation
+
+The amplification factor from Example 6.4 is:
+
+G = 1 - nu + nu*exp(-i*theta)
+
+Its complex conjugate is:
+
+G_bar = 1 - nu + nu*exp(i*theta)
+
+The squared modulus is:
+
+|G|² = G*G_bar
+
+Expanding the product:
+
+|G|² = (1 - nu)² + nu²
+       + nu*(1 - nu)*(exp(i*theta) + exp(-i*theta))
+
+Using Euler's identity:
+
+exp(i*theta) + exp(-i*theta) = 2*cos(theta)
+
+Therefore:
+
+|G|² = (1 - nu)² + nu²
+       + 2*nu*(1 - nu)*cos(theta)
+
+Using cos(theta) = 1 - 2*sin²(theta/2):
+
+|G|² = (1 - nu)² + nu²
+       + 2*nu*(1 - nu)
+       - 4*nu*(1 - nu)*sin²(theta/2)
+
+The first three terms simplify to:
+
+(1 - nu)² + nu² + 2*nu*(1 - nu) = 1
+
+Hence:
+
+|G|² = 1 - 4*nu*(1 - nu)*sin²(theta/2)
+
+This verifies the expression in Example 6.4.
+
+For stability, |G|² must not exceed 1 for any theta.
+
+This holds if and only if:
+
+nu*(1 - nu) >= 0
+
+Therefore:
+
+0 <= nu <= 1
+
+Since nu = c*dt/dx, the CFL condition is:
+
+c*dt/dx <= 1
+
+for positive c, dt and dx.
+
+
+## Task 6.2 - Von Neumann analysis in 1D
+
+### (a) Amplification factor
+
+The explicit 1D heat equation scheme from Task 5.1 is:
+
+u_new(j) = (1 - 2r)*u_old(j)
+           + r*(u_old(j-1) + u_old(j+1))
+
+where:
+
+r = alpha*dt/dx²
+
+Consider a discrete Fourier mode:
+
+u(j,n) = G^n * exp(i*j*theta)
+
+Substituting into the numerical scheme and
+cancelling the common Fourier factor gives:
+
+G = 1 - 2r + r*exp(-i*theta)
+           + r*exp(i*theta)
+
+Using Euler's identity:
+
+exp(i*theta) + exp(-i*theta) = 2*cos(theta)
+
+Therefore:
+
+G = 1 - 2r + 2r*cos(theta)
+
+Using cos(theta) = 1 - 2*sin²(theta/2):
+
+G(theta) = 1 - 4r*sin²(theta/2)
+
+The amplification factor is real because r and
+sin²(theta/2) are real.
+
+### (b) Worst-case mode
+
+For r >= 0, since 0 <= sin²(theta/2) <= 1:
+
+1 - 4r <= G(theta) <= 1
+
+At theta = 0, G = 1.
+
+At theta = pi or -pi, G = 1 - 4r.
+
+Consequently:
+
+max |G(theta)| = max(1, |1 - 4r|)
+
+The highest-frequency mode, theta = pi, corresponds
+to the alternating grid pattern:
+
++1, -1, +1, -1, ...
+
+It determines the restrictive stability bound.
+
+For 0 < r < 1/2, the constant mode theta = 0
+has the largest absolute amplification factor.
+
+At r = 1/2, both modes have |G| = 1.
+
+For r > 1/2, the alternating mode has |G| > 1
+and becomes unstable.
+
+### (c) Stability condition
+
+Von Neumann stability requires:
+
+|G(theta)| <= 1
+
+for every theta.
+
+The restrictive condition is:
+
+1 - 4r >= -1
+
+Therefore:
+
+r <= 1/2
+
+Substituting r = alpha*dt/dx² gives:
+
+alpha*dt/dx² <= 1/2
+
+Hence:
+
+dt <= dx²/(2*alpha)
+
+for positive alpha and dt.
+
+This is the stability condition for the explicit
+one-dimensional heat equation scheme.
+
+At the limiting value r = 1/2, the highest-frequency
+mode oscillates without decay. Above this limit,
+its amplitude grows and the scheme is unstable.

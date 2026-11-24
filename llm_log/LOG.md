@@ -200,3 +200,49 @@ The team remains responsible for all submitted code and results, including mater
 The Serial implementation was compiled and tested using automated checks and numerical convergence experiments.
 
 Future MPI implementations will be verified against the Serial reference to confirm numerical correctness.
+
+---
+
+## Person 2 - MPI Blocks implementation
+
+**Date:** November 24, 2026
+**Team member:** Yorgo (Person 2)
+**AI tool:** ChatGPT
+**Current model:** GPT-6.2
+
+### AI-assisted work
+
+- Ubuntu environment preparation and dependency installation.
+- Cartesian MPI Blocks decomposition and halo exchange.
+- Derived MPI datatype for column communication.
+- Integration with the existing heat solver.
+- Automated and independent correctness testing.
+- Local performance benchmarking and interpretation.
+- Background exercises 3.5, 4.1, 5.3, 6.1 and 6.2.
+- Blocks report contribution.
+
+### Files created or modified
+
+- src/heat_blocks.hpp
+- src/heat.cpp
+- solutions/solutions.md
+- scripts/task_3_5.py
+- scripts/task_4_1.py
+- results/p2/
+
+### Verification
+
+- Successful C++ compilation.
+- Shared comparison tests: 102/102 identical.
+- Independent comparison tests: 117/117 passed.
+- Local performance benchmarks: 18/18 completed.
+- All five assigned exercises completed.
+
+### Remaining
+
+Full original AI transcript and detailed interaction
+records are pending.
+
+Distributed validation and performance modeling
+remain coordinated with Person 3.
+

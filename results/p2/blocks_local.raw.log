@@ -1,0 +1,40 @@
+# date: 2026-11-24T13:47:41+00:00
+# host: ubuntu22   bin: build/heat   decomp: blocks   case: 1
+# steps: 500  r: 0.24  reps: 3  hostfile: local
+# mpirun (Open MPI) 4.1.6
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=1 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.060560717 t_comp=0.060502209999999959 t_comm=3.5493000000079547e-05
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=1 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.059882710999999998 t_comp=0.059831588000000033 t_comm=3.0358999999971243e-05
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=1 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.060748801999999998 t_comp=0.060692219999999901 t_comm=3.3135000000022864e-05
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=2 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.032907234 t_comp=0.031309653000000028 t_comm=0.001649370999999975
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=2 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.034739499 t_comp=0.032089856 t_comm=0.003125682000000012
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=2 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.036277304000000003 t_comp=0.032313036999999989 t_comm=0.0044352370000000328
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=4 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.020352754000000001 t_comp=0.017190055999999992 t_comm=0.0040898670000000014
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=4 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.021728682999999971 t_comp=0.018172284999999934 t_comm=0.0051929670000000604
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=4 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.020047293000000001 t_comp=0.017097272999999982 t_comm=0.0044920769999999711
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=1 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.236093659 t_comp=1.2353660379999993 t_comm=0.00051422400000003868
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=1 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.2206101920000001 t_comp=1.2199470629999993 t_comm=0.0004518790000014206
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=1 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.2428448730000001 t_comp=1.2420715710000001 t_comm=0.00039359099999806469
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=2 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=0.69029240700000005 t_comp=0.65838634800000173 t_comm=0.047637511000001173
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=2 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=0.69733392199999999 t_comp=0.66914956400000003 t_comm=0.053998700999999531
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=2 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=0.66417293500000008 t_comp=0.64291884799999943 t_comm=0.035961593000001221
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=4 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=0.53397450999999996 t_comp=0.45549152700000001 t_comm=0.11052464299999842
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=4 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=0.71912880899999998 t_comp=0.50851383100000025 t_comm=0.23115780600000133
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=4 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=0.71441426699999999 t_comp=0.51320893799999923 t_comm=0.22120818000000073
