@@ -1,0 +1,34 @@
+# date: 2026-11-26T17:08:23+02:00
+# host: Jean   bin: build/heat   decomp: serial   case: 1
+# steps: 500  r: 0.24  reps: 3  hostfile: local
+# mpirun (Open MPI) 4.1.6
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp serial  (rep 1)
+decomp=serial P=1 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.097037569000000004 t_comp=0.097037569000000004 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp serial  (rep 2)
+decomp=serial P=1 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.117365652 t_comp=0.117365652 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp serial  (rep 3)
+decomp=serial P=1 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.14205784399999999 t_comp=0.14205784399999999 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 1024 --steps 500 --r 0.24 --decomp serial  (rep 1)
+decomp=serial P=1 N=1024 steps=500 r=0.23999999999999999 dt=2.2888183593749999e-07 T=0.00011444091796875 t_total=0.56298700499999998 t_comp=0.56298700499999998 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 1024 --steps 500 --r 0.24 --decomp serial  (rep 2)
+decomp=serial P=1 N=1024 steps=500 r=0.23999999999999999 dt=2.2888183593749999e-07 T=0.00011444091796875 t_total=0.613781464 t_comp=0.613781464 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 1024 --steps 500 --r 0.24 --decomp serial  (rep 3)
+decomp=serial P=1 N=1024 steps=500 r=0.23999999999999999 dt=2.2888183593749999e-07 T=0.00011444091796875 t_total=0.53897183000000004 t_comp=0.53897183000000004 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp serial  (rep 1)
+decomp=serial P=1 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=2.5437327239999998 t_comp=2.5437327239999998 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp serial  (rep 2)
+decomp=serial P=1 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=2.3746431719999999 t_comp=2.3746431719999999 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp serial  (rep 3)
+decomp=serial P=1 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=2.4680571900000001 t_comp=2.4680571900000001 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 4096 --steps 500 --r 0.24 --decomp serial  (rep 1)
+decomp=serial P=1 N=4096 steps=500 r=0.23999999999999999 dt=1.4305114746093749e-08 T=7.152557373046875e-06 t_total=10.121366495 t_comp=10.121366495 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 4096 --steps 500 --r 0.24 --decomp serial  (rep 2)
+decomp=serial P=1 N=4096 steps=500 r=0.23999999999999999 dt=1.4305114746093749e-08 T=7.152557373046875e-06 t_total=9.303333576 t_comp=9.303333576 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 4096 --steps 500 --r 0.24 --decomp serial  (rep 3)
+decomp=serial P=1 N=4096 steps=500 r=0.23999999999999999 dt=1.4305114746093749e-08 T=7.152557373046875e-06 t_total=9.3545890029999992 t_comp=9.3545890029999992 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp serial  (rep 1)
+decomp=serial P=1 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=37.534546208000002 t_comp=37.534546208000002 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp serial  (rep 2)
+decomp=serial P=1 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=37.527843253 t_comp=37.527843253 t_comm=0
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp serial  (rep 3)
+decomp=serial P=1 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=37.252734211000003 t_comp=37.252734211000003 t_comm=0
