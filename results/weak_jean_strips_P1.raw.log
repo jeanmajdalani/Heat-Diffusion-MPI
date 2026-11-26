@@ -1,0 +1,10 @@
+# date: 2026-11-26T18:21:24+02:00
+# host: Jean   bin: build/heat   decomp: strips   case: 1
+# steps: 500  r: 0.24  reps: 3  hostfile: local
+# mpirun (Open MPI) 4.1.6
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 1024 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=1 N=1024 steps=500 r=0.23999999999999999 dt=2.2888183593749999e-07 T=0.00011444091796875 t_total=0.730812303 t_comp=0.73026996599999972 t_comm=0.0002882190000000536
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 1024 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=1 N=1024 steps=500 r=0.23999999999999999 dt=2.2888183593749999e-07 T=0.00011444091796875 t_total=0.71227229199999997 t_comp=0.71168564699999959 t_comm=0.00043955000000007538
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 1024 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=1 N=1024 steps=500 r=0.23999999999999999 dt=2.2888183593749999e-07 T=0.00011444091796875 t_total=0.689590539 t_comp=0.68912223300000064 t_comm=0.000264776999997858
