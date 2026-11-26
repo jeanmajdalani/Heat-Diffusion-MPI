@@ -1,0 +1,346 @@
+# date: 2026-11-26T17:36:33+02:00
+# host: Jean   bin: build/heat   decomp: blocks   case: 1
+# steps: 500  r: 0.24  reps: 3  hostfile: local
+# mpirun (Open MPI) 4.1.6
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=1 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.120601104 t_comp=0.1204897790000001 t_comm=8.1899999999941628e-05
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=1 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.14093973600000001 t_comp=0.14080312200000022 t_comm=8.8256999999962872e-05
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=1 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.13335097600000001 t_comp=0.13317517700000003 t_comm=0.00012928299999996655
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=2 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.079270581000000007 t_comp=0.071305627999999927 t_comm=0.012293068000000067
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=2 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.074594831 t_comp=0.068830996000000033 t_comm=0.007185508999999958
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=2 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.090282368000000002 t_comp=0.081265762999999949 t_comm=0.0091738289999999251
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=4 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.061447366000000003 t_comp=0.051188556999999947 t_comm=0.021407729000000014
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=4 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.054376215999999998 t_comp=0.048578029999999953 t_comm=0.021419068000000031
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=4 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.045612820999999998 t_comp=0.036043054999999984 t_comm=0.013443005000000022
+### mpirun -np 8 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=8 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.049398827999999999 t_comp=0.032062702999999998 t_comm=0.031266609999999993
+### mpirun -np 8 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=8 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.039931924000000001 t_comp=0.026673453 t_comm=0.018238678000000019
+### mpirun -np 8 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=8 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.032230178999999998 t_comp=0.023807882000000027 t_comm=0.013562241999999988
+### mpirun -np 16 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 16
+slots that were requested by the application:
+
+  build/heat
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+### mpirun -np 16 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 16
+slots that were requested by the application:
+
+  build/heat
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+### mpirun -np 16 --map-by slot build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 16
+slots that were requested by the application:
+
+  build/heat
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=1 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=2.964848656 t_comp=2.9637068629999956 t_comm=0.00071477900000722677
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=1 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=3.0013994249999998 t_comp=3.0004358210000013 t_comm=0.00060141699999831486
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=1 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=2.9395472659999999 t_comp=2.9384917099999974 t_comm=0.00070391700000465478
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=2 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.906846611 t_comp=1.8399484670000024 t_comm=0.084383995999999017
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=2 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.928211986 t_comp=1.8821480339999954 t_comm=0.08260921900000065
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=2 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.9364917150000001 t_comp=1.8990392470000008 t_comm=0.07813079400000246
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=4 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.5225890959999999 t_comp=1.3948547590000018 t_comm=0.20364221800000012
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=4 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.5667521010000001 t_comp=1.4457086199999989 t_comm=0.19298424699999966
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=4 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.5848056580000001 t_comp=1.4471609339999998 t_comm=0.21855312800000382
+### mpirun -np 8 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=8 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.2839699250000001 t_comp=1.1442559040000018 t_comm=0.17630192899999864
+### mpirun -np 8 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=8 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.309174388 t_comp=1.164459286999999 t_comm=0.18342121300000014
+### mpirun -np 8 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=8 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.2747128700000001 t_comp=1.138269017 t_comm=0.185156975000002
+### mpirun -np 16 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 16
+slots that were requested by the application:
+
+  build/heat
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+### mpirun -np 16 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 16
+slots that were requested by the application:
+
+  build/heat
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+### mpirun -np 16 --map-by slot build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 16
+slots that were requested by the application:
+
+  build/heat
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=1 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=48.578646739 t_comp=48.577375255999961 t_comm=0.00082331200000645662
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=1 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=49.837808277000001 t_comp=49.836492236999888 t_comm=0.00090690100007151647
+### mpirun -np 1 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=1 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=49.614987675999998 t_comp=49.613674533000001 t_comm=0.00095819499994357932
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=2 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=31.297536938 t_comp=30.749639441999982 t_comm=0.91012010899998141
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=2 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=30.725266940000001 t_comp=30.108929207999978 t_comm=0.61593115199998449
+### mpirun -np 2 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=2 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=30.602144381999999 t_comp=29.97948736799999 t_comm=0.80493850999999395
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=4 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=25.054303294 t_comp=23.599469686999971 t_comm=1.7749174890000121
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=4 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=25.631339267000001 t_comp=23.911167471000002 t_comm=1.838240758000004
+### mpirun -np 4 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=4 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=26.658460732999998 t_comp=24.974384934999964 t_comm=1.8794486009999747
+### mpirun -np 8 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=8 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=24.611735304 t_comp=22.870544323000015 t_comm=1.9343529719999792
+### mpirun -np 8 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=8 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=24.571331024999999 t_comp=22.788496428000002 t_comm=1.9437058569999537
+### mpirun -np 8 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=8 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=24.581493455 t_comp=22.815109324999973 t_comm=1.9415476379999603
+### mpirun -np 16 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 16
+slots that were requested by the application:
+
+  build/heat
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+### mpirun -np 16 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 16
+slots that were requested by the application:
+
+  build/heat
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+### mpirun -np 16 --map-by slot build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 16
+slots that were requested by the application:
+
+  build/heat
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
