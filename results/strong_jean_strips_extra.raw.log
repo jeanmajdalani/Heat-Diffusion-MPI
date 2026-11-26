@@ -1,0 +1,78 @@
+# date: 2026-11-26T18:03:39+02:00
+# host: Jean   bin: build/heat   decomp: strips   case: 1
+# steps: 500  r: 0.24  reps: 3  hostfile: cluster/hosts_local
+# mpirun (Open MPI) 4.1.6
+# hostfile:
+#   localhost slots=16
+### mpirun -np 6 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=6 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.042103096999999999 t_comp=0.036295067 t_comm=0.018439541999999927
+### mpirun -np 6 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=6 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.038782190000000001 t_comp=0.033661906999999998 t_comm=0.018914922000000004
+### mpirun -np 6 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=6 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.045373819000000003 t_comp=0.032986335000000026 t_comm=0.02441267500000005
+### mpirun -np 10 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=10 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.028008379999999999 t_comp=0.018793473999999977 t_comm=0.014286042000000025
+### mpirun -np 10 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=10 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.030276775999999998 t_comp=0.021988162999999981 t_comm=0.016080814999999988
+### mpirun -np 10 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=10 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.031206776999999963 t_comp=0.020802747999999663 t_comm=0.015067031999999817
+### mpirun -np 12 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=12 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.198773954 t_comp=0.027251797999999945 t_comm=0.17881998999999985
+### mpirun -np 12 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=12 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.044479501999999997 t_comp=0.021601690000000038 t_comm=0.028266035999999998
+### mpirun -np 12 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=12 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.030092470999999999 t_comp=0.018974907999999988 t_comm=0.015961463000000019
+### mpirun -np 16 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=16 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=1.6040797959999999 t_comp=0.031769085999998795 t_comm=1.5852506860000017
+### mpirun -np 16 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=16 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=1.75241392 t_comp=0.030955419000000674 t_comm=1.7347245970000007
+### mpirun -np 16 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=16 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=1.2521710399999999 t_comp=0.02780063400000133 t_comm=1.236773905
+### mpirun -np 6 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=6 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.3358954080000001 t_comp=1.222835768999998 t_comm=0.17920924599999996
+### mpirun -np 6 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=6 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.3274878430000001 t_comp=1.1995480480000023 t_comm=0.15282717300000159
+### mpirun -np 6 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=6 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.324538915 t_comp=1.1979921610000015 t_comm=0.16942351999999958
+### mpirun -np 10 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=10 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.3476309550000001 t_comp=1.0769733140000002 t_comm=0.32765348600000027
+### mpirun -np 10 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=10 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.377329488 t_comp=1.0499043569999986 t_comm=0.37272326400000044
+### mpirun -np 10 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=10 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.326481797 t_comp=1.0569772860000031 t_comm=0.31887771599999931
+### mpirun -np 12 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=12 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.4031697990000001 t_comp=0.87266027299999971 t_comm=0.58631342799999753
+### mpirun -np 12 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=12 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.3651886950000001 t_comp=0.90721486499999993 t_comm=0.55415559700000128
+### mpirun -np 12 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=12 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.260282254 t_comp=0.91277694500000262 t_comm=0.42314422099999927
+### mpirun -np 16 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=16 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=1.9644897240000001 t_comp=0.61415761500000077 t_comm=1.517161096000001
+### mpirun -np 16 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=16 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=2.9442132399999998 t_comp=0.58509727300000547 t_comm=2.5701761559999952
+### mpirun -np 16 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=16 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=4.8375210470000001 t_comp=0.48883156400000055 t_comm=4.4842988360000025
+### mpirun -np 6 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=6 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=23.064724156 t_comp=21.475568780999978 t_comm=1.6999222669999916
+### mpirun -np 6 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=6 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=22.695605235999999 t_comp=21.02387553799996 t_comm=1.8712699559999724
+### mpirun -np 6 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=6 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=22.885557575 t_comp=21.26030408800003 t_comm=1.8153352739999733
+### mpirun -np 10 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=10 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=22.325263573000001 t_comp=20.808633199999978 t_comm=1.7424702640000034
+### mpirun -np 10 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=10 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=22.234896476999999 t_comp=20.903779117000017 t_comm=1.7076245330000075
+### mpirun -np 10 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=10 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=23.231612609999999 t_comp=21.85328519799998 t_comm=1.8864750860000339
+### mpirun -np 12 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=12 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=24.161133256999999 t_comp=22.643443227999985 t_comm=2.2041488979999855
+### mpirun -np 12 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=12 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=24.881598027999999 t_comp=23.195881105999987 t_comm=2.106778333999983
+### mpirun -np 12 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=12 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=24.428966998 t_comp=22.816182049999998 t_comm=2.1483781479999933
+### mpirun -np 16 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=16 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=25.547033813999999 t_comp=23.144016534999999 t_comm=14.185195760999992
+### mpirun -np 16 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=16 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=25.412164679 t_comp=21.755757140000021 t_comm=12.665936953999999
+### mpirun -np 16 --map-by slot --hostfile cluster/hosts_local build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=16 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=25.388112822 t_comp=18.309736538000006 t_comm=12.732346524000025
