@@ -1,6 +1,7 @@
 #include "heat_common.hpp"
 #ifdef HEAT_HAVE_MPI
 #include "heat_strips.hpp"
+#include "heat_blocks.hpp"
 #endif
 #include <algorithm>
 #include <chrono>
@@ -36,11 +37,10 @@ int main(int argc, char** argv) {
         
         if (opt.decomp != "serial") {
 #ifdef HEAT_HAVE_MPI
-            if (opt.decomp == "blocks") {
-                throw std::invalid_argument("--decomp blocks is not implemented yet");
-            }
             MPI_Init(&argc, &argv);
-            const int rc = heat_strips::run(opt, timing);
+            const int rc = (opt.decomp == "blocks")
+                ? heat_blocks::run(opt, timing)
+                : heat_strips::run(opt, timing);
             MPI_Finalize();
             return rc;
 #else
