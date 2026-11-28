@@ -1,0 +1,13 @@
+# date: 2026-11-28T13:59:14+00:00
+# host: heat-node1   bin: build/heat   decomp: strips   case: 1
+# steps: 500  r: 0.24  reps: 3  hostfile: cluster/hosts_node1_node2_2slots
+# mpirun (Open MPI) 4.1.6
+# hostfile:
+#   100.112.127.82 slots=2
+#   100.74.132.105 slots=2
+### mpirun -np 2 --map-by node --hostfile cluster/hosts_node1_node2_2slots --mca btl_tcp_if_include tailscale0 --mca oob_tcp_if_include tailscale0 build/heat --case 1 --N 1448 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=2 N=1448 steps=500 r=0.23999999999999999 dt=1.1446537040993863e-07 T=5.7232685204969319e-05 t_total=73.837420852999998 t_comp=2.3679543239998715 t_comm=73.056737374999955
+### mpirun -np 2 --map-by node --hostfile cluster/hosts_node1_node2_2slots --mca btl_tcp_if_include tailscale0 --mca oob_tcp_if_include tailscale0 build/heat --case 1 --N 1448 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=2 N=1448 steps=500 r=0.23999999999999999 dt=1.1446537040993863e-07 T=5.7232685204969319e-05 t_total=77.268206235999997 t_comp=2.2572309159999442 t_comm=76.538067860000069
+### mpirun -np 2 --map-by node --hostfile cluster/hosts_node1_node2_2slots --mca btl_tcp_if_include tailscale0 --mca oob_tcp_if_include tailscale0 build/heat --case 1 --N 1448 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=2 N=1448 steps=500 r=0.23999999999999999 dt=1.1446537040993863e-07 T=5.7232685204969319e-05 t_total=75.851620347999997 t_comp=2.2615375320000393 t_comm=75.063740384999946
