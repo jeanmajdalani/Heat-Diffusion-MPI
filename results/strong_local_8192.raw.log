@@ -1,0 +1,16 @@
+# date: 2026-11-28T13:02:02+00:00
+# host: heat-node1   bin: build/heat   decomp: strips   case: 1
+# steps: 500  r: 0.24  reps: 3  hostfile: local
+# mpirun (Open MPI) 4.1.6
+### mpirun -np 1 --map-by slot --oversubscribe build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=1 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=39.749520373999999 t_comp=39.748825428000032 t_comm=0.00041382600001536787
+### mpirun -np 1 --map-by slot --oversubscribe build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=1 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=40.396859481 t_comp=40.395933767999985 t_comm=0.00061354400003112706
+### mpirun -np 1 --map-by slot --oversubscribe build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=1 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=40.170507563000001 t_comp=40.169785082999987 t_comm=0.00038021100005937019
+### mpirun -np 2 --map-by slot --oversubscribe build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=2 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=27.933298607000001 t_comp=27.233672553999938 t_comm=0.73503619800001962
+### mpirun -np 2 --map-by slot --oversubscribe build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=2 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=28.158366356999998 t_comp=27.821267750000011 t_comm=0.81655368900000069
+### mpirun -np 2 --map-by slot --oversubscribe build/heat --case 1 --N 8192 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=2 N=8192 steps=500 r=0.23999999999999999 dt=3.5762786865234374e-09 T=1.7881393432617188e-06 t_total=27.69175057 t_comp=27.299621465999984 t_comm=0.49676607700001951
