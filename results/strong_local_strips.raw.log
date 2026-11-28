@@ -1,0 +1,28 @@
+# date: 2026-11-28T11:15:11+00:00
+# host: heat-node1   bin: build/heat   decomp: strips   case: 1
+# steps: 500  r: 0.24  reps: 3  hostfile: local
+# mpirun (Open MPI) 4.1.6
+### mpirun -np 1 --map-by slot --oversubscribe build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=1 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.089883484999999999 t_comp=0.089808132000000068 t_comm=4.4373999999944928e-05
+### mpirun -np 1 --map-by slot --oversubscribe build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=1 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.10460902499999999 t_comp=0.1045374969999999 t_comm=4.1896999999960327e-05
+### mpirun -np 1 --map-by slot --oversubscribe build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=1 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.114400984 t_comp=0.11426343399999993 t_comm=4.4626000000050493e-05
+### mpirun -np 2 --map-by slot --oversubscribe build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=2 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.054447020999999998 t_comp=0.047542439000000027 t_comm=0.013349025000000051
+### mpirun -np 2 --map-by slot --oversubscribe build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=2 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.053612328000000001 t_comp=0.051397242000000017 t_comm=0.016279030000000066
+### mpirun -np 2 --map-by slot --oversubscribe build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=2 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=0.12708414400000001 t_comp=0.068463963000000183 t_comm=0.07725758000000002
+### mpirun -np 1 --map-by slot --oversubscribe build/heat --case 1 --N 1024 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=1 N=1024 steps=500 r=0.23999999999999999 dt=2.2888183593749999e-07 T=0.00011444091796875 t_total=0.40465306599999995 t_comp=0.40442246799999981 t_comm=0.00011962300000096588
+### mpirun -np 1 --map-by slot --oversubscribe build/heat --case 1 --N 1024 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=1 N=1024 steps=500 r=0.23999999999999999 dt=2.2888183593749999e-07 T=0.00011444091796875 t_total=0.40634227099999998 t_comp=0.40617045499999949 t_comm=9.1985000000057267e-05
+### mpirun -np 1 --map-by slot --oversubscribe build/heat --case 1 --N 1024 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=1 N=1024 steps=500 r=0.23999999999999999 dt=2.2888183593749999e-07 T=0.00011444091796875 t_total=0.47198750099999998 t_comp=0.47182812300000027 t_comm=9.4809000000028101e-05
+### mpirun -np 2 --map-by slot --oversubscribe build/heat --case 1 --N 1024 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=2 N=1024 steps=500 r=0.23999999999999999 dt=2.2888183593749999e-07 T=0.00011444091796875 t_total=0.21843715599999999 t_comp=0.21262756100000008 t_comm=0.0088252500000000136
+### mpirun -np 2 --map-by slot --oversubscribe build/heat --case 1 --N 1024 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=2 N=1024 steps=500 r=0.23999999999999999 dt=2.2888183593749999e-07 T=0.00011444091796875 t_total=0.22801821799999999 t_comp=0.21828093100000007 t_comm=0.018735574999999907
+### mpirun -np 2 --map-by slot --oversubscribe build/heat --case 1 --N 1024 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=2 N=1024 steps=500 r=0.23999999999999999 dt=2.2888183593749999e-07 T=0.00011444091796875 t_total=0.234435644 t_comp=0.22561538299999984 t_comm=0.010669039000000071
