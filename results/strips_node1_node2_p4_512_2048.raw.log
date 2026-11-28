@@ -1,0 +1,19 @@
+# date: 2026-11-28T15:25:14+00:00
+# host: heat-node1   bin: build/heat   decomp: blocks   case: 1
+# steps: 500  r: 0.24  reps: 3  hostfile: cluster/hosts_node1_node2_2slots
+# mpirun (Open MPI) 4.1.6
+# hostfile:
+#   100.112.127.82 slots=2
+#   100.74.132.105 slots=2
+### mpirun -np 4 --map-by node --hostfile cluster/hosts_node1_node2_2slots build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=4 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=113.866175216 t_comp=0.17715799300000684 t_comm=113.79244443399995
+### mpirun -np 4 --map-by node --hostfile cluster/hosts_node1_node2_2slots build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=4 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=117.848404389 t_comp=0.33992598800002438 t_comm=117.78087525799995
+### mpirun -np 4 --map-by node --hostfile cluster/hosts_node1_node2_2slots build/heat --case 1 --N 512 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=4 N=512 steps=500 r=0.23999999999999999 dt=9.1552734374999997e-07 T=0.000457763671875 t_total=127.804278827 t_comp=0.2961969740001219 t_comm=127.70902259400003
+### mpirun -np 4 --map-by node --hostfile cluster/hosts_node1_node2_2slots build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 1)
+decomp=blocks P=4 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=249.42312696400001 t_comp=3.6140596850000639 t_comm=248.62631180100001
+### mpirun -np 4 --map-by node --hostfile cluster/hosts_node1_node2_2slots build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 2)
+decomp=blocks P=4 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=230.06465377000001 t_comp=3.1493121050000301 t_comm=229.26435946400017
+### mpirun -np 4 --map-by node --hostfile cluster/hosts_node1_node2_2slots build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp blocks  (rep 3)
+decomp=blocks P=4 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=262.55985377899998 t_comp=2.9721668250001518 t_comm=261.64167734200004
