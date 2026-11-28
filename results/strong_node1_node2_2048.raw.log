@@ -1,0 +1,19 @@
+# date: 2026-11-28T12:49:20+00:00
+# host: heat-node1   bin: build/heat   decomp: strips   case: 1
+# steps: 500  r: 0.24  reps: 3  hostfile: cluster/hosts_node1_node2
+# mpirun (Open MPI) 4.1.6
+# hostfile:
+#   100.112.127.82 slots=1
+#   100.74.132.105 slots=1
+### mpirun -np 1 --map-by slot --hostfile cluster/hosts_node1_node2 --oversubscribe build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=1 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=2.3347471990000002 t_comp=2.3341679570000005 t_comm=0.00033946000000160893
+### mpirun -np 1 --map-by slot --hostfile cluster/hosts_node1_node2 --oversubscribe build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=1 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=2.972584978 t_comp=2.971900575000002 t_comm=0.00039946799999925195
+### mpirun -np 1 --map-by slot --hostfile cluster/hosts_node1_node2 --oversubscribe build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=1 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=2.5267270270000002 t_comp=2.5261578800000026 t_comm=0.00030808800000168581
+### mpirun -np 2 --map-by slot --hostfile cluster/hosts_node1_node2 --oversubscribe build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 1)
+decomp=strips P=2 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=94.934421872000001 t_comp=1.8360648660001253 t_comm=93.600450011999925
+### mpirun -np 2 --map-by slot --hostfile cluster/hosts_node1_node2 --oversubscribe build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 2)
+decomp=strips P=2 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=75.224911112000001 t_comp=1.7254900919999827 t_comm=73.896992022999939
+### mpirun -np 2 --map-by slot --hostfile cluster/hosts_node1_node2 --oversubscribe build/heat --case 1 --N 2048 --steps 500 --r 0.24 --decomp strips  (rep 3)
+decomp=strips P=2 N=2048 steps=500 r=0.23999999999999999 dt=5.7220458984374998e-08 T=2.86102294921875e-05 t_total=83.607176023999997 t_comp=1.7671953710000874 t_comm=82.225059006000066
