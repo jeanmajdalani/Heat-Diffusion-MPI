@@ -860,3 +860,228 @@ one-dimensional heat equation scheme.
 At the limiting value r = 1/2, the highest-frequency
 mode oscillates without decay. Above this limit,
 its amplitude grows and the scheme is unstable.
+
+
+## Task 6.4 - Positivity of the weights
+
+### Non-negative weights
+
+From Task 5.3, the five-point stencil has the
+following weights:
+
+Central node: w0 = 1 - 4r
+Four neighboring nodes: w = r
+
+Their sum is:
+
+w0 + 4r = 1
+
+For all weights to be non-negative:
+
+r >= 0
+1 - 4r >= 0
+
+Therefore:
+
+0 <= r <= 1/4
+
+Since r = alpha*dt/h², the stability condition is:
+
+dt <= h²/(4*alpha)
+
+### Comparison with Von Neumann analysis
+
+This is exactly the stability condition obtained
+in Task 6.3 for the uniform two-dimensional grid.
+
+When all weights are non-negative and sum to one,
+the new temperature is a convex combination of
+the previous temperatures.
+
+It cannot exceed the maximum or fall below the
+minimum of the stencil values.
+
+This establishes the discrete maximum principle
+and stability in the maximum norm.
+
+### Physical interpretation
+
+When r > 1/4, the central weight becomes negative.
+
+The update is no longer a convex combination.
+New temperature extrema can appear, violating the
+physical maximum principle of heat diffusion.
+
+High-frequency numerical errors may be amplified,
+producing oscillations and eventually instability.
+
+Therefore, respecting the stability condition
+is essential for a physically meaningful simulation.
+
+
+## Task 6.6 - Counting the work
+
+### (a) Grid points and time steps
+
+On the unit square:
+
+h = 1/N
+alpha = 1
+T = 0.1
+
+The total number of grid points is:
+
+(N + 1)²
+
+The number of interior points updated at each
+time step is:
+
+(N - 1)²
+
+From Task 6.3, the largest stable time step is:
+
+dt_max = h²/(4*alpha)
+       = 1/(4*N²)
+
+The number of time steps required is:
+
+K = ceil(T/dt_max)
+  = ceil(0.4*N²)
+
+If necessary, the time step is slightly reduced
+to reach the final time exactly.
+
+### (b) Total floating-point operations
+
+From Task 5.2(d), each interior update requires
+four additions and two multiplications, assuming
+the stencil coefficients are precomputed.
+
+This gives six floating-point operations per update.
+
+The total computational work is therefore:
+
+W(N) = 6*(N - 1)²*ceil(0.4*N²)
+
+For large N:
+
+W(N) approximately equals 2.4*N^4
+
+The computational complexity is O(N^4).
+
+### (c) Doubling the grid resolution
+
+When N is doubled, the number of interior nodes
+increases by approximately a factor of four.
+
+The number of time steps also increases by a
+factor of four because dt is proportional to h².
+
+Therefore, the total work increases by
+approximately a factor of sixteen:
+
+W(2N)/W(N) approximately equals 2^4 = 16
+
+### (d) Estimated execution times
+
+Assume a sustained computation rate of 1e9
+useful floating-point operations per second.
+
+The approximate runtime is:
+
+runtime = 2.4*N^4 / 1e9
+
+For N = 1000:
+
+W approximately equals 2.4e12 operations
+
+runtime = 2400 seconds
+        = 40 minutes
+
+For N = 4000:
+
+W approximately equals 6.144e14 operations
+
+runtime = 614400 seconds
+        = 170.67 hours
+        = 7.11 days
+
+Increasing N by a factor of four increases
+the computational work by a factor of 256.
+
+These are theoretical estimates assuming a constant
+sustained compute rate. Communication, memory access
+limitations and other overheads are not included.
+
+This rapid growth in computational cost motivates
+the use of parallel domain decomposition with MPI.
+
+
+## Task 8.1 - Why not update in place?
+
+### (a) Neighbors already updated
+
+Assume that the grid is traversed row by row,
+with increasing j and increasing i within each row.
+
+When updating an interior node (i,j), its
+interior neighbors (i-1,j) and (i,j-1) have
+already been visited.
+
+Therefore, they contain values at time level n+1.
+
+The neighbors (i+1,j) and (i,j+1) have not yet
+been visited and contain values at time level n.
+
+Fixed boundary nodes retain their prescribed values.
+
+### (b) Effect on the numerical scheme
+
+The original explicit scheme requires every
+temperature on the right-hand side of the update
+equation to belong to time level n.
+
+Updating in place mixes values from time levels
+n and n+1.
+
+Consequently, the result is no longer the original
+explicit finite-difference scheme.
+
+It also becomes dependent on the traversal order:
+changing the direction of the sweep changes which
+neighbors have already been updated.
+
+### (c) Importance for parallel computation
+
+In MPI domain decomposition, different processes
+compute their respective subdomains independently.
+
+Processes may execute at different speeds and
+visit their grid points in different orders.
+
+An order-dependent update would introduce
+dependencies between processes and could produce
+different numerical results depending on the
+decomposition and execution schedule.
+
+The correct solution is to maintain two arrays:
+
+- old_grid: temperatures at time level n.
+- new_grid: temperatures at time level n+1.
+
+All updates read exclusively from old_grid and
+write exclusively to new_grid.
+
+Halo exchanges provide neighboring values from
+the same old time level.
+
+After completing a time step, the two arrays
+are swapped without copying their individual
+elements.
+
+This preserves the original numerical scheme,
+ensures order-independent updates, and allows
+the serial, MPI strips and MPI blocks solvers
+to produce equivalent numerical results.
+
+This approach is used in our implementation.
